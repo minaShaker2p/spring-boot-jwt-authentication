@@ -1,5 +1,6 @@
 package com.mina.springbootjwtauthentication.security;
 
+import com.mina.springbootjwtauthentication.security.jwt.AuthEntryPointJwt;
 import com.mina.springbootjwtauthentication.security.jwt.AuthTokenFilter;
 import com.mina.springbootjwtauthentication.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/test/**").permitAll()
                 .anyRequest().authenticated();
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
