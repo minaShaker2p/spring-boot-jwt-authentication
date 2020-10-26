@@ -1,6 +1,9 @@
 package com.mina.springbootjwtauthentication.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +27,8 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "email")
         }
 )
-@Data
+@Setter
+@Getter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,4 +51,12 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    public User(String username,
+                String email,
+                String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }
