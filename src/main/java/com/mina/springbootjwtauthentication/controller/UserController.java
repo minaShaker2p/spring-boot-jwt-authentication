@@ -1,5 +1,8 @@
 package com.mina.springbootjwtauthentication.controller;
 
+import com.mina.springbootjwtauthentication.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,27 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/test")
-public class TestController {
+@RequestMapping("/api/users")
+public class UserController {
 
+    @Autowired
+    UserRepository userRepository;
 
-
-    @GetMapping("/all")
-    public String allAccess() {
-        return "Public Content.";
-    }
-
-
-    @GetMapping("/mod")
-    @PreAuthorize("hasRole('MODERATOR')")
-    public String moderatorAccess() {
-        return "Moderator Board.";
-    }
-
-    @GetMapping("/admin")
+    @GetMapping()
     @PreAuthorize("hasRole('ADMIN')")
-    public String adminAccess() {
-        return "Admin Board.";
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
     }
 
 }
