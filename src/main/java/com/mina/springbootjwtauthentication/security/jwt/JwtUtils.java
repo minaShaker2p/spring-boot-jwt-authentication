@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import javax.validation.Valid;
 import java.util.Date;
 
 
@@ -22,10 +21,10 @@ public class JwtUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("{mina.app.jwtSecret}")
+    @Value("${mina.app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("{mina.app.jwtExpirationMs}")
+    @Value("${mina.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
 

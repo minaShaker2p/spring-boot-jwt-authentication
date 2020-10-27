@@ -3,6 +3,6 @@ package com.mina.springbootjwtauthentication.security;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public interface UserDetailsService {
+public interface UserDetailsService extends org.springframework.security.core.userdetails.UserDetailsService {
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 }
